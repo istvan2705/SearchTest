@@ -1,20 +1,38 @@
-import driver.Driver;
-
+import io.github.bonigarcia.wdm.WebDriverManager;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 import org.testng.Assert;
-import org.testng.annotations.*;
 import pages.HomePage;
 import pages.ResultPage;
 import pages.SearchPage;
 
 public class SearchTest {
    HomePage homePage;
+    WebDriver driver;
    private static final String URL = "https://gazglobal.com/";
 
-    @BeforeTest
+    @BeforeClass
+    public static void setupClass() {
+        WebDriverManager.chromedriver().setup();
+    }
+
+    @BeforeMethod
     public void setUp() {
-        homePage = new HomePage();
-        Driver.getDriver().get(URL);
-      }
+        driver = new ChromeDriver();
+        driver.get(URL);
+        homePage = new HomePage(driver);
+        }
+
+    @AfterMethod
+    public void tearDown(){
+        if (driver != null) {
+            driver.quit();
+        }
+    }
 
   @Test(priority = 0, description = "Opened search field when click search")
   public void searchOpenedWhenClickSearch(){
@@ -46,9 +64,4 @@ public class SearchTest {
       int sizeOfDropdownList = resultPage.getSizeOfDropdownList();
       Assert.assertTrue(sizeOfDropdownList > 0);
   }
-
-    @AfterTest
-    public void tearDown(){
-       Driver.removeDriver();
-    }
 }
