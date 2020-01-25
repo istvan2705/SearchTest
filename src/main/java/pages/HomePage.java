@@ -14,16 +14,16 @@ public class HomePage {
     @FindBy(css = "a svg[viewBox ='0 0 18 19']")
     WebElement search;
 
-   public HomePage(WebDriver webDriver) {
+    public HomePage(WebDriver webDriver) {
         driver = webDriver;
         webDriverWait = new WebDriverWait(driver, 10);
         PageFactory.initElements(driver, this);
     }
 
     public SearchPage getSearchPage() {
-       webDriverWait.until(ExpectedConditions.visibilityOfAllElements(search));
-       search.click();
-       return new SearchPage(driver);
+        webDriverWait.until(ExpectedConditions.visibilityOfAllElements(search));
+        search.click();
+        return new SearchPage(driver);
     }
 }
 

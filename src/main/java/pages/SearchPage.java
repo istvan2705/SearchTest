@@ -32,7 +32,7 @@ public class SearchPage extends HomePage {
 
     public ResultPage openBusTag(){
         webDriverWait.until(ExpectedConditions.elementToBeClickable(busTag));
-      busTag.click();
-      return new ResultPage(driver);
+        busTag.click();
+        return new ResultPage(driver);
     }
- }
+}

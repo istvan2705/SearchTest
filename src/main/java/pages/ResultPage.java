@@ -15,20 +15,20 @@ public class ResultPage extends HomePage {
     }
 
     @FindBy(css = ".search-page >div.search-result_")
-   protected WebElement listFoundItemsInSearch;
+    protected WebElement listFoundItemsInSearch;
 
-   @FindBy(css = "font[class = 'notetext']")
-   protected WebElement messageNotFoundItemsInSearch;
+    @FindBy(css = "font[class = 'notetext']")
+    protected WebElement messageNotFoundItemsInSearch;
 
 
-public int getSizeOfDropdownList(){
-   webDriverWait.until(ExpectedConditions.visibilityOfAllElements(listFoundItemsInSearch));
-   List<WebElement> webElements = listFoundItemsInSearch.findElements(By.tagName("div"));
-   return webElements.size();
-   }
+    public int getSizeOfDropdownList(){
+        webDriverWait.until(ExpectedConditions.visibilityOfAllElements(listFoundItemsInSearch));
+        List<WebElement> webElements = listFoundItemsInSearch.findElements(By.tagName("div"));
+        return webElements.size();
+    }
 
- public String getMessageNotFoundItem(){
-    webDriverWait.until(ExpectedConditions.visibilityOfAllElements(messageNotFoundItemsInSearch));
-   return messageNotFoundItemsInSearch.getText();
- }
+    public String getMessageNotFoundItem(){
+        webDriverWait.until(ExpectedConditions.visibilityOfAllElements(messageNotFoundItemsInSearch));
+        return messageNotFoundItemsInSearch.getText();
+    }
 }
